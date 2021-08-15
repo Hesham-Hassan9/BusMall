@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+  }
+  h1 {
+      font-size: 50px;
+    text-align: center;
+  }
+  p{
+    font-size: 20px; 
+  }
+  img {
+    display: block;
+    width: 250px;
+    float: left;
+    height: 250px;
+    border: 2px solid lightblue;
+  }
+  #imageContainer {
+    padding-left: 100px;
+    border: 2px solid black;
+    width: 900px;
+    margin: 0 auto;
+    height: 275px;
+  }
+  #imageSelectionOne,
+  #imageSelectionTwo, imageSelectionThree {
+    width: 200px;
+    margin: 10px;
+    /* display: block; */
+    /* margin: 0 auto; */
+    border-radius: 10px;
+  }
+  span {
+    margin-left: 50px;
+  }
+  #attempts {
+    margin-left: 20px;
+    font-size: 30px;
+  }
+  button{
+      margin-top: 25px;
+      margin-right: 45%;
+      width: 200px;
+      height: 80px;
+      float: right;
+      background-color: lightblue;
+      font-size: 20px;
+  }
+  ul li{
+      text-align: center;
+      font-size: 25px;
+  }
