@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Global variables
 
 let imageSelectionOne = document.getElementById('imageSelectionOne');
@@ -13,6 +14,9 @@ let totalClicks = 0;
 let imageUsed = [1, 2, 3, 4, 5, 6];
 let showingList = false;
 let imgPush = [];
+let imName = [];
+let timesShown = [];
+let timesSelected = [];
 
 
 // Constructor
@@ -22,6 +26,7 @@ function ImageList(imgName){
   this.timesShown = 0;
   this.timesSelected = 0;
   imgPush.push(this);
+  imName.push(this.name);
 }
 
 for (let i = 0; i < imageArray.length; i++) {
@@ -44,7 +49,6 @@ function makeList() {
 
 
 
-
 // Displays images
 function randomImage(socketEl){
   // generate a random number 0-7
@@ -63,6 +67,7 @@ function randomImage(socketEl){
   // Replaces items in used image array
   imageUsed.shift();
   imageUsed.push(randomIndex);
+
 }
 
 
@@ -105,10 +110,54 @@ function showResults(event){
   event.preventDefault();
   for (let i=0; i<imageArray.length; i++){
     let liEl = document.createElement('li');
-    liEl.textContent = imgPush[i].name + ' was clicked ' + imgPush[i].timesSelected + ' times';
+    liEl.textContent = imgPush[i].name + ' was clicked ' + imgPush[i].timesSelected + ' times' + ' times Shown ' + imgPush[i].timesShown;
+
+    timesSelected.push(imgPush[i].timesSelected);
+    timesShown.push(imgPush[i].timesShown);
     ulEl.appendChild(liEl);
   }
   button.style.display = 'none';
+  chartRender();
 }
 
 button.style.display = 'none';
+
+
+function chartRender() {
+  let ctx = document.getElementById('myChart').getContext('2d');
+  // eslint-disable-next-line no-undef
+  let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: imName,
+      datasets: [{
+        label: '# of times Selected',
+        data: timesSelected,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)'
+        ],
+        borderWidth: 1
+      }, {
+        label: '# of times Shown',
+        data: timesShown,
+        backgroundColor: [
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderColor: [
+          'rgba(54, 162, 235, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
