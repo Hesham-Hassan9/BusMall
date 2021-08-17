@@ -18,6 +18,23 @@ let imName = [];
 let timesShown = [];
 let timesSelected = [];
 
+// Local Storage
+function saveToLocalStorage() {
+  let data = JSON.stringify(imgPush);
+  localStorage.setItem('data', data);
+}
+function readFromLocalStorage() {
+  let stringObj = localStorage.getItem('data');
+  let normalObj = JSON.parse(stringObj);
+
+  if (normalObj) {
+    imgPush = normalObj;
+    console.log();
+    showResults();
+  }
+}
+readFromLocalStorage();
+
 
 // Constructor
 function ImageList(imgName){
@@ -88,7 +105,7 @@ function handleImage(event){
     randomImage(imageSelectionThree);
   } else {
     makeList();
-    button.style.display = 'block';
+    // button.style.display = 'block';
   }
 }
 
@@ -106,8 +123,14 @@ randomImage(imageSelectionThree);
 
 
 button.addEventListener('click', showResults);
+
 function showResults(event){
-  event.preventDefault();
+  // event.preventDefault();
+  renderList();
+}
+
+function renderList() {
+  ulEl.textContent = '';
   for (let i=0; i<imageArray.length; i++){
     let liEl = document.createElement('li');
     liEl.textContent = imgPush[i].name + ' was clicked ' + imgPush[i].timesSelected + ' times' + ' times Shown ' + imgPush[i].timesShown;
@@ -116,11 +139,11 @@ function showResults(event){
     timesShown.push(imgPush[i].timesShown);
     ulEl.appendChild(liEl);
   }
-  button.style.display = 'none';
-  chartRender();
+  // button.style.display = 'none';
+  saveToLocalStorage();
 }
 
-button.style.display = 'none';
+// button.style.display = 'none';
 
 
 function chartRender() {
@@ -161,3 +184,4 @@ function chartRender() {
     }
   });
 }
+chartRender();
