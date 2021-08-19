@@ -122,6 +122,7 @@ randomImage(imageSelectionTwo);
 randomImage(imageSelectionThree);
 
 
+
 button.addEventListener('click', showResults);
 
 function showResults(event){
@@ -145,7 +146,7 @@ function renderList() {
 
 // button.style.display = 'none';
 
-
+//
 function chartRender() {
   let ctx = document.getElementById('myChart').getContext('2d');
   // eslint-disable-next-line no-undef
