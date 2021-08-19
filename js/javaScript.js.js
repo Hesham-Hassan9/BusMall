@@ -105,6 +105,7 @@ randomImage(imageSelectionTwo);
 randomImage(imageSelectionThree);
 
 
+
 button.addEventListener('click', showResults);
 function showResults(event){
   event.preventDefault();
